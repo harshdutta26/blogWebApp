@@ -16,7 +16,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cors({
-  origin: 'https://blog-web-app-three-omega.vercel.app',
+  origin: ['https://blog-web-app-three-omega.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
