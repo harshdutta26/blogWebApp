@@ -15,7 +15,7 @@ function App() {
   const [toggle, setToggle] = useState(false);
   const [expanded, setExpanded] = useState({}); // <-- for showMore/showLess per blog
 
-        const backendUrl=import.meta.env.BACKEND_URL;
+        const backendUrl=import.meta.env.VITE_BACKEND_URL;
 
   const fetchedData = async () => {
     try {
