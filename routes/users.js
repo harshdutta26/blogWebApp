@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 require('dotenv').config()
-mongoose.connect(`mongodb+srv://harshMongo26:${process.env.DB_PASSWORD}@blog.nlygvye.mongodb.net/?retryWrites=true&w=majority&appName=blog`);
+mongoose.connect(`${process.env.MONGO_URL}`);
 const userSchema=mongoose.Schema({
   username:String,
   title:String,
