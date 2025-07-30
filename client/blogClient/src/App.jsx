@@ -21,7 +21,7 @@ function App() {
     try {
       setLoading(true);
 
-      let res = await fetch(backendUrl);
+      let res = await fetch(`${backendUrl}/api`);
       var data = await res.json();
       setBlog(data);
     } catch (err) {
@@ -53,7 +53,7 @@ function App() {
     e.preventDefault();
     try {
       
-      const res = await fetch(`${backendUrl}/newBlog`, {
+      const res = await fetch(`${backendUrl}/api/newBlog`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -79,7 +79,7 @@ function App() {
   const handleSubmitAi = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${backendUrl}/ai`, {
+      const res = await fetch(`${backendUrl}/api/ai`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -103,7 +103,7 @@ function App() {
 
   const deleteBlog = async (b) => {
     try {
-      const res = await fetch(`${backendUrl}/delete`, {
+      const res = await fetch(`${backendUrl}/api/delete`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -119,7 +119,7 @@ function App() {
 
   const updateBlog = async (b) => {
     try {
-      const res = await fetch(`${backendUrl}/update`, {
+      const res = await fetch(`${backendUrl}/api/update`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
