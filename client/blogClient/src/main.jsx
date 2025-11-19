@@ -1,31 +1,12 @@
-// import { StrictMode,useState } from 'react'
-// import { createRoot} from 'react-dom/client'
-// import './index.css'
-// import App from './App.jsx'
-// import {BrowserRouter,Routes,Route} from 'react-router-dom'
-// import CreateBlog from './Components/CreateBlog.jsx'
-// import { MyContext } from './Components/MyContext.jsx'
+import { StrictMode, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.jsx';
+import CreateBlog from './Components/CreateBlog.jsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { MyContext } from './Components/MyContext.jsx';
+import Header from './Components/Header.jsx';
 
-
-// createRoot(document.getElementById('root')).render(
-//   <StrictMode>
-//     <App />
-//     {/* <BrowserRouter>
-//       <Routes>
-//         <Route path='/CreateBlog'element={CreateBlog}/>
-//       </Routes>
-//     </BrowserRouter> */}
-    
-//   </StrictMode>,
-// )
-
-import { StrictMode, useState } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import CreateBlog from './Components/CreateBlog.jsx'
-import { MyContext } from './Components/MyContext.jsx'
 
 function AppProvider() {
   const [author, setAuthor] = useState('');
@@ -36,31 +17,46 @@ function AppProvider() {
   const [content, setContent] = useState('');
   const [toggle, setToggle] = useState(false);
 
+  function titleChange(e) {
+    setTitle(e.target.value);
+  }
+
+  function contentChange(e) {
+    setContent(e.target.value);
+  }
+
+  function authorChange(e) {
+    setAuthor(e.target.value);
+  }
+  function toggleHandle() {
+  setToggle(prev => !prev);
+}
+
   return (
-    <MyContext.Provider
-      value={{
-        author, setAuthor,
-        blog, setBlog,
-        loading, setLoading,
-        showForm, SetshowForm,
-        title, setTitle,
-        content, setContent,
-        toggle, setToggle
-      }}
-    >
+    <MyContext.Provider value={{
+      author, setAuthor,
+      blog, setBlog,
+      loading, setLoading,
+      showForm, SetshowForm,
+      title, setTitle,
+      content, setContent,
+      toggle, setToggle,toggleHandle,
+      titleChange, contentChange, authorChange
+    }}>
       <BrowserRouter>
+      <Header/>
         <Routes>
-          <Route path="/" element={<App />}>
-            <Route path="/CreateBlog" element={<CreateBlog />} />
-          </Route>
+          <Route path="/" element={<App />} />
+          <Route path="/CreateBlog" element={<CreateBlog />} />
         </Routes>
       </BrowserRouter>
+
     </MyContext.Provider>
-  )
+  );
 }
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AppProvider />
   </StrictMode>
-)
+);
